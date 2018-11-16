@@ -1,0 +1,22 @@
+Python INTRODUCCION:
+-Creado por Guido Van Rossum a comienzos de los 90
+-Lenguaje de Muy Alto Nivel, es decir se asemeja mucho al lenguaje natural
+-Tipado dinamico fuerte (El lenguaje distingue entre tipo de dato)
+-Orientado a Objetos 
+	-SobreCarga de constructores
+	-Herencia Multiple
+	-Encapsulacion
+	-Interfaces
+	-Polimorfismo
+-Open Source
+-Facil de Aprender
+-Muchas Librerias
+-Interpretado
+-Versatil 
+	-Aplicaciones de Escritorio
+	-Aplicaciones de Servidor
+	-Aplicaciones Web
+
+	
+	
+	
