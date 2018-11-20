@@ -1,7 +1,7 @@
 #TEMA: TUPLAS
 #Las tuplas son LISTAS INMUTABLES
 #No permiten añadir, eliminar, mover elementos
-#No permiten busquedas, solo verficar si un elemento esta contenido o no
+#No permiten busquedas (En python3 si), solo verficar si un elemento esta contenido o no
 #Permiten extraer partes
 #Formatean cadenas
 
