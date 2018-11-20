@@ -1,0 +1,8 @@
+Python CONDICIONALES:
+-El flujo de ejecucion es el orden con el cual se 
+ ejecutan las instruciones de un programa.
+-Normalmente es de arriba a abajo.
+-Los concionales modifican ese flujo.
+-Un condicional es un bloque de codigo que se ejecutara 
+ o no de acuerdo a una evalucion, si es verdad la condicion
+ se ejecuta ese bloque, y si es falso no se ejecuta el bloque.
