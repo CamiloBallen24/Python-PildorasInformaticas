@@ -1,6 +1,13 @@
 #Tema: -Estado Inicial (Constructor)
 #      -Encasuplacion (Atributos y Metodos)
 
+#El estado inicial o contructor, nos permite determinar como
+#sera el estado de al instancia, en el punto en el que se crea.
+
+#La encapsulacion, nos permite ocultar al exterior (fuera de la clase)
+#algunos atributos y metodos, los cuales por su funcionamiento no deben 
+#ser llamados o accesidos desde afuera
+
 
 ##########################################################
 class Coche():

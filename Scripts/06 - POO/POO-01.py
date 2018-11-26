@@ -1,5 +1,7 @@
 #TEMA: POO-CLASES
 #      Clase Basica
+
+#Un clase es la plantilla, de los objetos o intancias
 ########################################################################
 #Definicion de una clase
 class Coche():
