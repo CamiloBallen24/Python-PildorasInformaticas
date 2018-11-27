@@ -4,7 +4,9 @@
 print("Ejemplo #1")
 miCadena = "Hola"
 print(miCadena.upper()) #Pasa a mayusculas tooo
-print(print()
+print()
+print()
+print()
 ################################################################
 
 
