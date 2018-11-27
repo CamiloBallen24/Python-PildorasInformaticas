@@ -1,1 +1,17 @@
 ver el video paquetes distribuibles de pildoras informaticas para entender mejor
+
+Empaquetar:
+
+   ->Creo el archivo setup.py, una carpeta antes de donde se encuentra el paquete a installar(o el paquete padre del subpaquete que deseo installar).
+
+  ->Situarse en la raiz(donde esta el archivo setup) y escribir el comando:
+      python setup.py sdist
+  
+Installar:
+  ->Me situo en la carpeta dist que creo el empaquetado y ejecuto el comando:
+      pip3 install (nombre del .rar que se creo)
+    
+Desintalar:
+  ->Solamente tengo que ejecutar el comando:
+      pip3 uninstall (nombre del paquete)
+  
