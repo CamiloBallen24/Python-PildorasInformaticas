@@ -1,6 +1,7 @@
 #TEMA - EJEMPLO - CALCULADORA
 
 #columnspan --->Me permite determinar cuantas columnas ocupa una celda
+#Solo suma :v
 #################################################################
 from tkinter import *
 #################################################################
