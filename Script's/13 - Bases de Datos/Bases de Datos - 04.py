@@ -1,4 +1,4 @@
-#TEMA: Creacion de una tabla
+#TEMA: CONSULTAR DATOS
 
 #################################################################
 import sqlite3
@@ -13,14 +13,20 @@ mi_conexion= sqlite3.connect("Primera_base")
 #Creamos el cursor o puntero
 mi_cursor = mi_conexion.cursor()
 
-#Creamos una tabla
-mi_cursor.execute("CREATE TABLE PRODUCTOS (NOMBRE_ARTICULO VARCHAR(50), PRECIO INTEGER, SECCION VARCHAR(20))")
 
+#Recibiendo datos
+mi_cursor.execute("SELECT * FROM PRODUCTOS")
 
-#Confirmamos los cambios
-mi_conexion.commit()
+#Me regresa una lista con los productos
+varios_productos=mi_cursor.fetchall() 
+
+#Mostrar Datos
+for producto in varios_productos:
+	print("Nombre: ", producto[0], " \nPrecio: ", producto[1], " \nSeccion: ", producto[2], "\n\n")
+
 
 #Cerramos el cursor o puntero
+
 
 #Cerramos la conexion
 mi_conexion.close()
