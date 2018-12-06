@@ -13,6 +13,7 @@ import sqlite3
 ##########################################################################################################################
 #Funciones
 
+#--------------------------------------------------#
 def conexionBBDD():
 	mi_conexion=sqlite3.connect("Usuarios")
 
@@ -24,6 +25,7 @@ def conexionBBDD():
 			ID INTEGER PRIMARY KEY AUTOINCREMENT,
 			NOMBRE_USUARIO VARCHAR(50),
 			PASSWORD VARCHAR(10),
+			APELLIDO VARCHAR(50),
 			DIRECCION VARCHAR(50),
 			COMENTARIOS VARCHAR(100))
 			''')
@@ -34,12 +36,41 @@ def conexionBBDD():
 		messagebox.showwarning("BBDD", "¡Atencion!, la BBDD ya existe")
 
 
-
+#--------------------------------------------------#
 def salirAplicacion():
 	valor = messagebox.askquestion("Salir", "¿Deseas salir de la aplicacion?")
 
 	if valor == "yes":
 		root.destroy()
+
+
+#--------------------------------------------------#
+def limpiarCampos():
+	mi_ID.set("")
+	mi_nombre.set("")
+	mi_apellido.set("")
+	mi_direccion.set("")
+	mi_pass.set("")
+	texto_comentario.delete(1.0, END)
+
+
+#--------------------------------------------------#
+def crear():
+	mi_conexion= sqlite3.connect("Usuarios")
+
+	mi_cursor= mi_conexion.cursor()
+
+	mi_cursor.execute("INSERT INTO DATOS_USUARIOS VALUES(NULL, '" + mi_nombre.get() + 
+		"','" + mi_pass.get() +  
+		"','" + mi_apellido.get() + 
+		"','" + mi_direccion.get() + 
+		"','" + texto_comentario.get("1.0", END)+ "')")
+
+	mi_conexion.commit()
+
+	messagebox.showinfo("BBDD", "Registro insertado con exito")
+
+
 ##########################################################################################################################
 
 
@@ -59,11 +90,11 @@ bbdd_menu.add_command(label="Conectar", command=conexionBBDD)
 bbdd_menu.add_command(label="Salir", command=salirAplicacion)
 
 borrar_menu=Menu(barra_menu, tearoff=0)
-borrar_menu.add_command(label="Borrar Campos")
+borrar_menu.add_command(label="Borrar Campos", command=limpiarCampos)
 
 
 crud_menu=Menu(barra_menu, tearoff=0)
-crud_menu.add_command(label="Crear")
+crud_menu.add_command(label="Crear", command=crear)
 crud_menu.add_command(label="Leer")
 crud_menu.add_command(label="Actualizar")
 crud_menu.add_command(label="Borrar")
@@ -82,21 +113,28 @@ barra_menu.add_cascade(label="Ayuda", menu=ayuda_menu)
 mi_frame_01=Frame(root)
 mi_frame_01.pack()
 
-cuadro_id=Entry(mi_frame_01)
+mi_ID=StringVar()
+mi_nombre=StringVar()
+mi_apellido=StringVar()
+mi_pass=StringVar()
+mi_direccion=StringVar()
+
+
+cuadro_id=Entry(mi_frame_01, textvariable=mi_ID)
 cuadro_id.grid(row=0, column=1, padx=10, pady=10)
 
-cuadro_nombre=Entry(mi_frame_01)
+cuadro_nombre=Entry(mi_frame_01, textvariable=mi_nombre)
 cuadro_nombre.grid(row=1, column=1, padx=10, pady=10)
 cuadro_nombre.config(fg="red", justify="right")
 
-cuadro_pass=Entry(mi_frame_01)
+cuadro_pass=Entry(mi_frame_01, textvariable=mi_pass)
 cuadro_pass.grid(row=2, column=1, padx=10, pady=10)
 cuadro_pass.config(show="*")
 
-cuadro_apellido=Entry(mi_frame_01)
+cuadro_apellido=Entry(mi_frame_01, textvariable=mi_apellido)
 cuadro_apellido.grid(row=3, column=1, padx=10, pady=10)
 
-cuadro_direccion=Entry(mi_frame_01)
+cuadro_direccion=Entry(mi_frame_01, textvariable=mi_direccion)
 cuadro_direccion.grid(row=4, column=1, padx=10, pady=10)
 
 texto_comentario=Text(mi_frame_01, width=16, height=5)
@@ -138,7 +176,7 @@ comentarios_label.grid(row=5, column=0, padx=10, pady=10, sticky="e")
 mi_frame_02=Frame(root)
 mi_frame_02.pack()
 
-boton_crear= Button(mi_frame_02, text="Create")
+boton_crear= Button(mi_frame_02, text="Create", command=crear)
 boton_crear.grid(row=0, column=0, padx=10, pady=10, sticky="e")
 
 boton_leer= Button(mi_frame_02, text="Read")
