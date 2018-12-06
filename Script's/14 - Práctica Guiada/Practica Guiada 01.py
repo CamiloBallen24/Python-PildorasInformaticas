@@ -109,14 +109,19 @@ def actualizar():
 	mi_conexion= sqlite3.connect("Usuarios")
 
 	mi_cursor= mi_conexion.cursor()
+	
+	datos=mi_nombre.get(), mi_pass.get(), mi_apellido.get(), mi_direccion.get(), texto_comentario.get("1.0", END)
 
+	mi_cursor.execute("UPDATE DATOS_USUARIOS SET NOMBRE_USUARIO = ?, PASSWORD=?, APELLIDO=?, DIRECCION=?, COMENTARIOS=? WHERE ID=" +mi_ID.get()+ " ", datos)
+
+	"""
 	mi_cursor.execute("UPDATE DATOS_USUARIOS SET NOMBRE_USUARIO = '" + mi_nombre.get() + 
 		"', PASSWORD = '" + mi_pass.get() +
 		"', APELLIDO = '" + mi_apellido.get() +
 		"', DIRECCION = '" + mi_direccion.get() +
 		"', COMENTARIOS = '" + texto_comentario.get("1.0", END) + 
 		"' WHERE ID =" + mi_ID.get() + "")
-
+	"""
 	mi_conexion.commit()
 
 	messagebox.showinfo("BBDD", "Registro actualizado con exito")
