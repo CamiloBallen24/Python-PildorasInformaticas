@@ -1,4 +1,6 @@
 #Practica guiada
+
+
 ##########################################################################################################################
 from tkinter import *
 from tkinter import messagebox
@@ -36,12 +38,14 @@ def conexionBBDD():
 		messagebox.showwarning("BBDD", "¡Atencion!, la BBDD ya existe")
 
 
+
 #--------------------------------------------------#
 def salirAplicacion():
 	valor = messagebox.askquestion("Salir", "¿Deseas salir de la aplicacion?")
 
 	if valor == "yes":
 		root.destroy()
+
 
 
 #--------------------------------------------------#
@@ -52,6 +56,7 @@ def limpiarCampos():
 	mi_direccion.set("")
 	mi_pass.set("")
 	texto_comentario.delete(1.0, END)
+
 
 
 #--------------------------------------------------#
@@ -69,6 +74,61 @@ def crear():
 	mi_conexion.commit()
 
 	messagebox.showinfo("BBDD", "Registro insertado con exito")
+
+
+
+#--------------------------------------------------#
+def leer():
+	mi_conexion= sqlite3.connect("Usuarios")
+
+	mi_cursor= mi_conexion.cursor()
+
+	mi_cursor.execute("SELECT * FROM DATOS_USUARIOS WHERE ID =" + mi_ID.get())
+
+	datos_usuarios = mi_cursor.fetchall()
+
+	for usuario in datos_usuarios:
+		mi_ID.set(usuario[0])
+		mi_nombre.set(usuario[1])
+		mi_pass.set(usuario[2])
+		mi_apellido.set(usuario[3])
+		mi_direccion.set(usuario[4])
+		texto_comentario.insert(1.0, usuario[5])
+
+	mi_conexion.commit()
+
+
+
+#--------------------------------------------------#
+def actualizar():
+	mi_conexion= sqlite3.connect("Usuarios")
+
+	mi_cursor= mi_conexion.cursor()
+
+	mi_cursor.execute("UPDATE DATOS_USUARIOS SET NOMBRE_USUARIO = '" + mi_nombre.get() + 
+		"', PASSWORD = '" + mi_pass.get() +
+		"', APELLIDO = '" + mi_apellido.get() +
+		"', DIRECCION = '" + mi_direccion.get() +
+		"', COMENTARIOS = '" + texto_comentario.get("1.0", END) + 
+		"' WHERE ID =" + mi_ID.get() + "")
+
+	mi_conexion.commit()
+
+	messagebox.showinfo("BBDD", "Registro actualizado con exito")
+
+
+#--------------------------------------------------#
+def eliminar():
+	mi_conexion= sqlite3.connect("Usuarios")
+
+	mi_cursor= mi_conexion.cursor()
+
+	mi_cursor.execute("DELETE FROM DATOS_USUARIOS  WHERE ID =" + mi_ID.get() + "")
+
+	mi_conexion.commit()
+
+	messagebox.showinfo("BBDD", "Registro eliminado con exito")
+
 
 
 ##########################################################################################################################
@@ -95,9 +155,9 @@ borrar_menu.add_command(label="Borrar Campos", command=limpiarCampos)
 
 crud_menu=Menu(barra_menu, tearoff=0)
 crud_menu.add_command(label="Crear", command=crear)
-crud_menu.add_command(label="Leer")
-crud_menu.add_command(label="Actualizar")
-crud_menu.add_command(label="Borrar")
+crud_menu.add_command(label="Leer", command=leer)
+crud_menu.add_command(label="Actualizar", command=actualizar)
+crud_menu.add_command(label="Borrar", command=eliminar)
 
 ayuda_menu=Menu(barra_menu, tearoff=0)
 ayuda_menu.add_command(label="Licencia")
@@ -179,13 +239,13 @@ mi_frame_02.pack()
 boton_crear= Button(mi_frame_02, text="Create", command=crear)
 boton_crear.grid(row=0, column=0, padx=10, pady=10, sticky="e")
 
-boton_leer= Button(mi_frame_02, text="Read")
+boton_leer= Button(mi_frame_02, text="Read", command=leer)
 boton_leer.grid(row=0, column=1, padx=10, pady=10, sticky="e")
 
-boton_actualizar= Button(mi_frame_02, text="Update")
+boton_actualizar= Button(mi_frame_02, text="Update", command=actualizar)
 boton_actualizar.grid(row=0, column=2, padx=10, pady=10, sticky="e")
 
-boton_borrar= Button(mi_frame_02, text="Delete")
+boton_borrar= Button(mi_frame_02, text="Delete", command=eliminar)
 boton_borrar.grid(row=0, column=3, padx=10, pady=10, sticky="e")
 
 
