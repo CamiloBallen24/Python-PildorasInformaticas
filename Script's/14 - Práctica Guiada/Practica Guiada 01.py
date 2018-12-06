@@ -5,6 +5,48 @@ from tkinter import messagebox
 import sqlite3
 ##########################################################################################################################
 
+
+
+
+
+
+##########################################################################################################################
+#Funciones
+
+def conexionBBDD():
+	mi_conexion=sqlite3.connect("Usuarios")
+
+	mi_cursor=mi_conexion.cursor()
+
+	try:
+		mi_cursor.execute('''
+			CREATE TABLE DATOS_USUARIOS(
+			ID INTEGER PRIMARY KEY AUTOINCREMENT,
+			NOMBRE_USUARIO VARCHAR(50),
+			PASSWORD VARCHAR(10),
+			DIRECCION VARCHAR(50),
+			COMENTARIOS VARCHAR(100))
+			''')
+
+		messagebox.showinfo("BBDD", "BBDD Creada con éxito")
+
+	except:
+		messagebox.showwarning("BBDD", "¡Atencion!, la BBDD ya existe")
+
+
+
+def salirAplicacion():
+	valor = messagebox.askquestion("Salir", "¿Deseas salir de la aplicacion?")
+
+	if valor == "yes":
+		root.destroy()
+##########################################################################################################################
+
+
+
+
+
+
 ##########################################################################################################################
 root=Tk()
 
@@ -13,8 +55,8 @@ barra_menu=Menu(root)
 root.config(menu=barra_menu, width=300, height=300)
 
 bbdd_menu=Menu(barra_menu, tearoff=0)
-bbdd_menu.add_command(label="Conectar")
-bbdd_menu.add_command(label="Salir")
+bbdd_menu.add_command(label="Conectar", command=conexionBBDD)
+bbdd_menu.add_command(label="Salir", command=salirAplicacion)
 
 borrar_menu=Menu(barra_menu, tearoff=0)
 borrar_menu.add_command(label="Borrar Campos")
@@ -67,6 +109,8 @@ texto_comentario.config(yscrollcommand=scroll_vert.set)
 
 
 
+
+
 #-------------------- Label --------------------#
 id_label=Label(mi_frame_01, text="ID:")
 id_label.grid(row=0, column=0, padx=10, pady=10, sticky="e")
@@ -88,6 +132,8 @@ comentarios_label.grid(row=5, column=0, padx=10, pady=10, sticky="e")
 
 
 
+
+
 #--------------------Botones--------------------#
 mi_frame_02=Frame(root)
 mi_frame_02.pack()
@@ -103,6 +149,7 @@ boton_actualizar.grid(row=0, column=2, padx=10, pady=10, sticky="e")
 
 boton_borrar= Button(mi_frame_02, text="Delete")
 boton_borrar.grid(row=0, column=3, padx=10, pady=10, sticky="e")
+
 
 
 
