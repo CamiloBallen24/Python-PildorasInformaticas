@@ -14,7 +14,6 @@ import sqlite3
 
 ##########################################################################################################################
 #Funciones
-
 #--------------------------------------------------#
 def conexionBBDD():
 	mi_conexion=sqlite3.connect("Usuarios")
@@ -65,11 +64,17 @@ def crear():
 
 	mi_cursor= mi_conexion.cursor()
 
+	datos=mi_nombre.get(), mi_pass.get(), mi_apellido.get(), mi_direccion.get(), texto_comentario.get("1.0", END)
+
+	mi_cursor.execute("INSERT INTO DATOS_USUARIOS VALUES (NULL, ?, ?, ?, ?, ?)", datos)
+
+	"""
 	mi_cursor.execute("INSERT INTO DATOS_USUARIOS VALUES(NULL, '" + mi_nombre.get() + 
 		"','" + mi_pass.get() +  
 		"','" + mi_apellido.get() + 
 		"','" + mi_direccion.get() + 
 		"','" + texto_comentario.get("1.0", END)+ "')")
+	"""
 
 	mi_conexion.commit()
 
@@ -167,6 +172,9 @@ barra_menu.add_cascade(label="BBDD", menu=bbdd_menu)
 barra_menu.add_cascade(label="Borar", menu=borrar_menu)
 barra_menu.add_cascade(label="CRUD", menu=crud_menu)
 barra_menu.add_cascade(label="Ayuda", menu=ayuda_menu)
+
+
+
 
 
 #--------------------COMIENZO DE CAMPOS--------------------#
