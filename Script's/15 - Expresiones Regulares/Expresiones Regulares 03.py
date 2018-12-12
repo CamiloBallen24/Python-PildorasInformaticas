@@ -7,6 +7,8 @@ import re
 
 ######################################################################
 #Ejemplo #1
+print("Ejemplo #1")
+
 lista_nombres =['Ana', 'Pedro', 'Maria', 'Rosa', 'Sandra', 'Celia']
 
 # O-T, es quivalente a O P Q R S T
@@ -20,6 +22,8 @@ print("\n\n\n")
 
 ######################################################################
 #Ejemplo #2
+print("Ejemplo #2")
+
 
 lista_nombres =['Ma1', 'Se1', 'Ma2', 'Ba1', 'Ma3', 'Va1', 'Va2', 'Ma4', 'MaA', 'Ma5', 'MaB', 'MaC']
 
