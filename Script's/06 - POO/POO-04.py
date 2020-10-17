@@ -55,6 +55,6 @@ print(isinstance(Antonio, Empleado))
 #Ejemplo un empleado es siempre persona, pero una persona
 #no siempre es empleado
 
-#Python nos brinda isinstance, nos permite determinar si 
+#Python nos brinda is instance, nos permite determinar si 
 #un objeto es una instancia de una clase o no
 ############################################################

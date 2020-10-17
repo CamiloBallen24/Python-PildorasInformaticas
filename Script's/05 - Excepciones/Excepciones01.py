@@ -33,7 +33,7 @@ while True:
 		break
 
 	except ValueError:
-		print("Los valores introducidos no son correctos, Intenralo de nuevo.")
+		print("Los valores introducidos no son correctos, Intentalo de nuevo.")
 		print()
 		print()
 		print()
